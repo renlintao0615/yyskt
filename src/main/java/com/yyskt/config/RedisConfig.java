@@ -22,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-//@Configuration
-//@EnableCaching //开启缓存，默认是rendis缓存，继承CachingConfigurerSupport ，直接重写里面的方法
+@Configuration
+@EnableCaching //开启缓存，默认是rendis缓存，继承CachingConfigurerSupport ，直接重写里面的方法
 public class RedisConfig  {
 //	
 //	@Bean
