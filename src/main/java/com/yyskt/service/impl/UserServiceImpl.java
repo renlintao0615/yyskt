@@ -1,14 +1,13 @@
 package com.yyskt.service.impl;
 
-import com.yyskt.entity.User;
-import com.yyskt.mapper.UserMapper;
-import com.yyskt.service.IUserService;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+import com.yyskt.entity.user.User;
+import com.yyskt.mapper.UserMapper;
+import com.yyskt.service.IUserService;
 
 /**
  * <p>
@@ -24,15 +23,17 @@ public class UserServiceImpl implements IUserService {
 	private UserMapper usermapper;
 	
 	@Override
-	public int add(User user)
+	public User add(User user)
 	{
-		return usermapper.add(user);
+		int add = usermapper.add(user);
+		return add == 1 ? usermapper.selectUserById(user.getId()) : new User();
 	}
 	
 	@Override
-	public int update(User user)
+	public User update(User user)
 	{
-		return usermapper.update(user);
+		int update = usermapper.update(user);
+		return update == 1 ? usermapper.selectUserById(user.getId()) : new User();
 	}
 	
 	@Override
@@ -42,9 +43,13 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	@Cacheable(value = "redisCache",key = "111")
 	public List<User> select(User user)
 	{
 		return usermapper.selectUser(user);
+	}
+
+	@Override
+	public User selectUserById(int id) {
+		return usermapper.selectUserById(id);
 	}
 }

@@ -1,4 +1,4 @@
-package com.yyskt.entity;
+package com.yyskt.entity.common;
 
 import java.util.List;
 

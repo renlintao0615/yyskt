@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yyskt.entity.ResultParam;
+import com.yyskt.entity.common.ResultParam;
 
 import lombok.extern.slf4j.Slf4j;
 

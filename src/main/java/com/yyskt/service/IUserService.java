@@ -2,7 +2,11 @@ package com.yyskt.service;
 
 import java.util.List;
 
-import com.yyskt.entity.User;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+
+import com.yyskt.entity.user.User;
 
 /**
  * <p>
@@ -14,11 +18,18 @@ import com.yyskt.entity.User;
  */
 public interface IUserService{
 
-	public int add(User user);
-	
-	public int update(User user);
-	
+	@CachePut(value="userCache",key = "#p0.id")
+	public User add(User user);
+
+	@CachePut(value="userCache",key = "#p0.id")
+	public User update(User user);
+
+	@CacheEvict(value="userCache",key = "#id")
 	public int delete(int id);
 
+	@Cacheable(value = "userAllCache",key = "#p0")
 	public List<User> select(User user);
+	
+	@Cacheable(value = "userCache",key = "#id")
+	public User selectUserById(int id);
 }

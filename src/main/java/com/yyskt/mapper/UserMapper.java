@@ -1,9 +1,10 @@
 package com.yyskt.mapper;
 
-import com.yyskt.entity.User;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.yyskt.entity.user.User;
 
 /**
  * <p>
@@ -22,4 +23,6 @@ public interface UserMapper{
 	public int delete(int id);
 
 	public List<User> selectUser(User user);
+
+	public User selectUserById(int id);
 }
